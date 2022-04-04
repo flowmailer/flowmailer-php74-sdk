@@ -22,6 +22,11 @@ use Psr\SimpleCache\CacheInterface;
 class AuthTokenPlugin implements Plugin
 {
     private int $retriesLeft = 3;
+
+    /**
+     * @readonly
+     */
+    private CacheInterface $cache;
     /**
      * @readonly
      */
@@ -33,24 +38,19 @@ class AuthTokenPlugin implements Plugin
     /**
      * @readonly
      */
-    private CacheInterface $cache;
-    /**
-     * @readonly
-     */
     private int $maxRetries = 3;
 
     public function __construct(
         Flowmailer $client,
         Options $options,
-        CacheInterface $cache = null,
+        ?CacheInterface $cache = null,
         int $maxRetries = 3
     ) {
-        $cache ??= new ArrayCachePool();
         $this->client = $client;
         $this->options = $options;
-        $this->cache = $cache;
         $this->maxRetries = $maxRetries;
         $this->retriesLeft = $maxRetries;
+        $this->cache       = $cache ?? new ArrayCachePool();
     }
 
     public function handleRequest(RequestInterface $request, callable $next, callable $first): Promise

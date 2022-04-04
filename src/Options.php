@@ -18,13 +18,12 @@ final class Options
     /**
      * @readonly
      */
-    private SymfonyOptions $options;
+    private array $options;
 
     /**
-     * @var OptionsResolver The options resolver
      * @readonly
      */
-    private \Symfony\Component\OptionsResolver\OptionsResolver $resolver;
+    private OptionsResolver $resolver;
 
     /**
      * @param array<string, mixed> $options The configuration options
@@ -74,6 +73,7 @@ final class Options
         $resolver->setDefault('host', 'flowmailer.net');
         $resolver->setDefault('base_url', fn (SymfonyOptions $options) => sprintf('%s://api.%s', $options['protocol'], $options['host']));
         $resolver->setDefault('auth_base_url', fn (SymfonyOptions $options) => sprintf('%s://login.%s', $options['protocol'], $options['host']));
+
         $resolver->setRequired([
             'account_id',
             'client_secret',
@@ -81,6 +81,7 @@ final class Options
         ]);
 
         $resolver->define('plugins')
+            ->default([])
             ->allowedTypes('array[]')
             ->allowedValues(static function (array &$elements): bool {
                 $defaults = [
@@ -100,7 +101,8 @@ final class Options
                 $elements = array_merge_recursive($defaults, $elements);
 
                 return true;
-            });
+            })
+        ;
 
         $resolver->setAllowedTypes('account_id', 'string');
         $resolver->setAllowedTypes('client_id', 'string');
