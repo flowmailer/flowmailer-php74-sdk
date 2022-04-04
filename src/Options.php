@@ -15,6 +15,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class Options
 {
+    private const PACKAGE_NAME = 'flowmailer/flowmailer-php74-sdk';
+
     /**
      * @readonly
      */
@@ -62,6 +64,11 @@ final class Options
         return $this->options['auth_base_url'];
     }
 
+    public function getOAuthScope(): string
+    {
+        return $this->options['oauth_scope'];
+    }
+
     public function getPlugin(string $name): array
     {
         return $this->options['plugins'][$name];
@@ -73,6 +80,7 @@ final class Options
         $resolver->setDefault('host', 'flowmailer.net');
         $resolver->setDefault('base_url', fn (SymfonyOptions $options) => sprintf('%s://api.%s', $options['protocol'], $options['host']));
         $resolver->setDefault('auth_base_url', fn (SymfonyOptions $options) => sprintf('%s://login.%s', $options['protocol'], $options['host']));
+        $resolver->setDefault('oauth_scope', 'api');
 
         $resolver->setRequired([
             'account_id',
@@ -91,7 +99,7 @@ final class Options
                         'Content-Type' => sprintf('application/vnd.flowmailer.%s+json', Flowmailer::API_VERSION),
                         'Connection'   => 'Keep-Alive',
                         'Keep-Alive'   => '300',
-                        'User-Agent'   => sprintf('FlowMailer PHP SDK %s for API %s', InstalledVersions::getVersion('flowmailer/flowmailer-php-sdk'), Flowmailer::API_VERSION),
+                        'User-Agent'   => sprintf('FlowMailer PHP SDK %s:%s for API %s', self::PACKAGE_NAME, InstalledVersions::getVersion(self::PACKAGE_NAME), Flowmailer::API_VERSION),
                     ],
                     'retry' => [
                         'retries' => 3,
@@ -111,6 +119,7 @@ final class Options
         $resolver->setAllowedTypes('host', 'string');
         $resolver->setAllowedTypes('base_url', 'string');
         $resolver->setAllowedTypes('auth_base_url', 'string');
+        $resolver->setAllowedTypes('oauth_scope', 'string');
         $resolver->setAllowedValues('protocol', ['http', 'https']);
         $resolver->setAllowedTypes('plugins', 'array');
     }
