@@ -192,7 +192,17 @@ class Flowmailer extends Endpoints
         return $this->options;
     }
 
-    protected function handleResponse(ResponseInterface $response, $body = null, $method = '')
+    public function getRequestFactory(): RequestFactoryInterface
+    {
+        return $this->requestFactory;
+    }
+
+    public function getStreamFactory(): StreamFactoryInterface
+    {
+        return $this->streamFactory;
+    }
+
+    public function handleResponse(ResponseInterface $response, $body = null, $method = '')
     {
         $responseBody = $response->getBody()->getContents();
 
@@ -255,7 +265,7 @@ class Flowmailer extends Endpoints
     /**
      * Send email or sms messages.
      *
-     * @param $submitMessages \Iterator
+     * @param \Iterator $submitMessages
      */
     public function submitMessages(SubmitMessageCreatorIterator $submitMessages): \Generator
     {
@@ -319,7 +329,7 @@ class Flowmailer extends Endpoints
         return $request;
     }
 
-    protected function getResponse(RequestInterface $request, ClientInterface $client = null): ResponseInterface
+    public function getResponse(RequestInterface $request, ClientInterface $client = null): ResponseInterface
     {
         $client ??= $this->getHttpClient();
 
