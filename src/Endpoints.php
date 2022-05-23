@@ -23,6 +23,9 @@ use Symfony\Component\Serializer\SerializerInterface;
 abstract class Endpoints
 {
     public SerializerInterface $serializer;
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(SerializerInterface $serializer)
     {
         $this->serializer = $serializer;
@@ -35,6 +38,7 @@ abstract class Endpoints
      * @param $clientSecret The API client secret provided by Flowmailer
      * @param $grantType    must be `client_credentials`
      * @param $scope        Must be absent or `api`
+     * @codeCoverageIgnore
      */
     public function createRequestForCreateOAuthToken(
         $clientId,
@@ -56,6 +60,8 @@ abstract class Endpoints
      * This call is used to request an access token using the client id and secret provided by flowmailer.
      *
      * The form parameters must be posted in `application/x-www-form-urlencoded` format. But the response will be in JSON format.
+     *
+     * @codeCoverageIgnore
      */
     public function createOAuthToken($clientId, $clientSecret, $grantType, $scope = 'api'): OAuthTokenResponse
     {
@@ -92,6 +98,7 @@ abstract class Endpoints
      * @param array          $sourceIds      Filter results on message source ID
      * @param bool           $addmessagetags Message tags will be included with each event if this parameter is true
      * @param string         $sortorder
+     * @codeCoverageIgnore
      */
     public function createRequestForGetMessageEvents(
         ReferenceRange $range = null,
@@ -119,6 +126,8 @@ abstract class Endpoints
      * List message events.
      *
      *  Ordered by received, new events first.
+     *
+     * @codeCoverageIgnore
      */
     public function getMessageEvents(
         ReferenceRange $range = null,
@@ -144,6 +153,7 @@ abstract class Endpoints
      * @param bool           $addtags
      * @param string         $sortfield     Sort by INSERTED or SUBMITTED (default INSERTED)
      * @param string         $sortorder
+     * @codeCoverageIgnore
      */
     public function createRequestForGetMessages(
         ReferenceRange $range = null,
@@ -177,6 +187,8 @@ abstract class Endpoints
      * List messages.
      *
      *  This API call can be used to retrieve all messages and keep your database up to date (without missing messages due to paging issues). To do this sortfield must be set to INSERTED, and sortorder should be set to ASC.
+     *
+     * @codeCoverageIgnore
      */
     public function getMessages(
         ReferenceRange $range = null,
@@ -196,6 +208,8 @@ abstract class Endpoints
 
     /**
      * Create the RequestInterface for submitMessage.
+     *
+     * @codeCoverageIgnore
      */
     public function createRequestForSubmitMessage(SubmitMessage $submitMessage): RequestInterface
     {
@@ -204,6 +218,8 @@ abstract class Endpoints
 
     /**
      * Send an email or sms message.
+     *
+     * @codeCoverageIgnore
      */
     public function submitMessage(SubmitMessage $submitMessage)
     {
@@ -218,6 +234,7 @@ abstract class Endpoints
      *
      * @param      $messageId Message ID
      * @param bool $addtags
+     * @codeCoverageIgnore
      */
     public function createRequestForGetMessage($messageId, ?bool $addtags = false): RequestInterface
     {
@@ -230,6 +247,8 @@ abstract class Endpoints
 
     /**
      * Get message by id.
+     *
+     * @codeCoverageIgnore
      */
     public function getMessage($messageId, ?bool $addtags = false): Message
     {
