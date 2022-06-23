@@ -14,32 +14,32 @@ namespace Flowmailer\API\Parameter;
  */
 class DateRange
 {
-    private \DateTime $startDate;
-    private \DateTime $endDate;
-    public function __construct(\DateTime $startDate, \DateTime $endDate)
+    private \DateTimeInterface $startDate;
+    private \DateTimeInterface $endDate;
+    public function __construct(\DateTimeInterface $startDate, \DateTimeInterface $endDate)
     {
         $this->startDate = $startDate;
         $this->endDate = $endDate;
     }
     public function __toString(): string
     {
-        return sprintf('%s,%s', rawurlencode($this->getStartDate()->format(DATE_ISO8601)), rawurlencode($this->getEndDate()->format(DATE_ISO8601)));
+        return sprintf('%s,%s', $this->getStartDate()->format(DATE_ISO8601), $this->getEndDate()->format(DATE_ISO8601));
     }
-    public function getStartDate(): \DateTime
+    public function getStartDate(): \DateTimeInterface
     {
         return $this->startDate;
     }
-    public function setStartDate(\DateTime $startDate): DateRange
+    public function setStartDate(\DateTimeInterface $startDate): DateRange
     {
         $this->startDate = $startDate;
 
         return $this;
     }
-    public function getEndDate(): \DateTime
+    public function getEndDate(): \DateTimeInterface
     {
         return $this->endDate;
     }
-    public function setEndDate(\DateTime $endDate): DateRange
+    public function setEndDate(\DateTimeInterface $endDate): DateRange
     {
         $this->endDate = $endDate;
 
