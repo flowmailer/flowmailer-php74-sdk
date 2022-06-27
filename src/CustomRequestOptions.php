@@ -16,6 +16,11 @@ final class CustomRequestOptions
     /**
      * @readonly
      */
+    private array $options;
+
+    /**
+     * @readonly
+     */
     private OptionsResolver $resolver;
 
     /**
