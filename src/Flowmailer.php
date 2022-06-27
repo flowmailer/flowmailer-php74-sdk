@@ -115,7 +115,7 @@ class Flowmailer extends Endpoints implements FlowmailerInterface
         $this->cache = $cache;
         $this->innerHttpClient = $innerHttpClient;
         $this->innerAuthClient = $innerAuthClient;
-        $this->logger = $this->logger ?? new NullLogger();
+        $this->logger ??= new NullLogger();
 
         $this->accountId    = $options->getAccountId();
         $this->clientId     = $options->getClientId();
@@ -208,7 +208,7 @@ class Flowmailer extends Endpoints implements FlowmailerInterface
         return $this->logger;
     }
 
-    protected function getOptions(): Options
+    protected function getOptions(): OptionsInterface
     {
         return $this->options;
     }
