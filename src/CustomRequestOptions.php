@@ -40,6 +40,11 @@ final class CustomRequestOptions
         return $this->options['body'];
     }
 
+    public function getPath(): array
+    {
+        return $this->options['path'];
+    }
+
     public function getMatrices(): array
     {
         return $this->options['matrices'];
@@ -59,6 +64,9 @@ final class CustomRequestOptions
     {
         $resolver->setDefault('body', null);
         $resolver->setAllowedTypes('body', ['null', 'string']);
+
+        $resolver->setDefault('path', []);
+        $resolver->setAllowedTypes('path', ['array']);
 
         $resolver->setDefault('matrices', []);
         $resolver->setAllowedTypes('matrices', ['array']);
