@@ -17,7 +17,7 @@ use Flowmailer\API\Collection\SampleCollection;
  *
  * Message flow
  */
-final class Flow implements ModelInterface
+class Flow implements ModelInterface
 {
     /**
      * Flow description.
