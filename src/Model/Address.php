@@ -12,7 +12,7 @@ namespace Flowmailer\API\Model;
 /**
  * Address.
  */
-final class Address implements ModelInterface
+class Address implements ModelInterface
 {
     private ?string $address = null;
     private ?string $name = null;
