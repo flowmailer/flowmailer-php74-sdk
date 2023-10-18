@@ -84,7 +84,7 @@ abstract class Endpoints
 
     abstract public function getResponse(
         RequestInterface $request,
-        ClientInterface $client = null
+        ?ClientInterface $client = null
     ): ResponseInterface;
 
     abstract protected function getOptions(): OptionsInterface;
@@ -155,8 +155,6 @@ abstract class Endpoints
 
     /**
      * Create the RequestInterface for getApiCredentials.
-     *
-     * @param int $sourceId
      *
      * @codeCoverageIgnore
      */
@@ -492,7 +490,6 @@ abstract class Endpoints
      *
      * @param ReferenceRange $range     Limits the returned list
      * @param DateRange      $daterange Date range the filter was added in
-     * @param string         $sortorder
      *
      * @codeCoverageIgnore
      */
@@ -738,12 +735,10 @@ abstract class Endpoints
     /**
      * Create the RequestInterface for getFlowMessages.
      *
-     * @param            $flowId        Flow ID
-     * @param DateRange  $daterange     Date range the message was submitted in
-     * @param ItemsRange $range         Limits the returned list
-     * @param bool       $addheaders    Whether to add e-mail headers
-     * @param bool       $addonlinelink
-     * @param bool       $addtags
+     * @param            $flowId     Flow ID
+     * @param DateRange  $daterange  Date range the message was submitted in
+     * @param ItemsRange $range      Limits the returned list
+     * @param bool       $addheaders Whether to add e-mail headers
      *
      * @codeCoverageIgnore
      */
@@ -888,7 +883,6 @@ abstract class Endpoints
      * @param array          $flowIds        Filter results on message flow ID
      * @param array          $sourceIds      Filter results on message source ID
      * @param bool           $addmessagetags Message tags will be included with each event if this parameter is true
-     * @param string         $sortorder
      *
      * @codeCoverageIgnore
      */
@@ -1009,14 +1003,11 @@ abstract class Endpoints
     /**
      * Create the RequestInterface for getMessages.
      *
-     * @param ReferenceRange $range         Limits the returned list
-     * @param array          $flowIds       Filter results on flow ID
-     * @param bool           $addevents     Whether to add message events
-     * @param bool           $addheaders    Whether to add e-mail headers
-     * @param bool           $addonlinelink
-     * @param bool           $addtags
-     * @param string         $sortfield     Sort by INSERTED or SUBMITTED (default INSERTED)
-     * @param string         $sortorder
+     * @param ReferenceRange $range      Limits the returned list
+     * @param array          $flowIds    Filter results on flow ID
+     * @param bool           $addevents  Whether to add message events
+     * @param bool           $addheaders Whether to add e-mail headers
+     * @param string         $sortfield  Sort by INSERTED or SUBMITTED (default INSERTED)
      *
      * @codeCoverageIgnore
      */
@@ -1127,8 +1118,7 @@ abstract class Endpoints
     /**
      * Create the RequestInterface for getMessage.
      *
-     * @param      $messageId Message ID
-     * @param bool $addtags
+     * @param $messageId Message ID
      *
      * @codeCoverageIgnore
      */
@@ -1157,9 +1147,7 @@ abstract class Endpoints
     /**
      * Create the RequestInterface for getMessageArchive.
      *
-     * @param      $messageId      Message ID
-     * @param bool $addattachments
-     * @param bool $adddata
+     * @param $messageId Message ID
      *
      * @codeCoverageIgnore
      */
@@ -1222,9 +1210,6 @@ abstract class Endpoints
     /**
      * Create the RequestInterface for getMessageErrorArchive.
      *
-     * @param bool $addattachments
-     * @param bool $adddata
-     *
      * @codeCoverageIgnore
      */
     public function createRequestForGetMessageErrorArchive(
@@ -1283,7 +1268,6 @@ abstract class Endpoints
      * Create the RequestInterface for getMessageStats.
      *
      * @param DateRange $daterange Date range the messages were submitted in
-     * @param array     $flowIds
      * @param int       $interval  Time difference between samples
      *
      * @codeCoverageIgnore
@@ -1354,8 +1338,6 @@ abstract class Endpoints
      * @param DateRange      $daterange     Date range the messages were submitted in
      * @param bool           $addheaders    Whether to add e-mail headers
      * @param bool           $addonlinelink Whether to add online link
-     * @param bool           $addtags
-     * @param string         $sortorder
      *
      * @codeCoverageIgnore
      */
@@ -1440,8 +1422,6 @@ abstract class Endpoints
      * @param DateRange      $daterange     Date range the messages were submitted in
      * @param bool           $addheaders    Whether to add e-mail headers
      * @param bool           $addonlinelink Whether to add online link
-     * @param bool           $addtags
-     * @param string         $sortorder
      *
      * @codeCoverageIgnore
      */
@@ -1808,12 +1788,10 @@ abstract class Endpoints
     /**
      * Create the RequestInterface for getSourceMessages.
      *
-     * @param            $sourceId      Source ID
-     * @param DateRange  $daterange     Date range the message was submitted in
-     * @param ItemsRange $range         Limits the returned list
-     * @param bool       $addheaders    Whether to add e-mail headers
-     * @param bool       $addonlinelink
-     * @param bool       $addtags
+     * @param            $sourceId   Source ID
+     * @param DateRange  $daterange  Date range the message was submitted in
+     * @param ItemsRange $range      Limits the returned list
+     * @param bool       $addheaders Whether to add e-mail headers
      *
      * @codeCoverageIgnore
      */
@@ -2035,8 +2013,6 @@ abstract class Endpoints
      * @param DateRange      $daterange     Date range the messages were submitted in
      * @param bool           $addheaders    Whether to add e-mail headers
      * @param bool           $addonlinelink Whether to add online link
-     * @param bool           $addtags
-     * @param string         $sortorder
      *
      * @codeCoverageIgnore
      */
@@ -2224,9 +2200,6 @@ abstract class Endpoints
      * @param DateRange      $receivedrange Date range the message bounced
      * @param bool           $addevents     Whether to add message events
      * @param bool           $addheaders    Whether to add e-mail headers
-     * @param bool           $addonlinelink
-     * @param bool           $addtags
-     * @param string         $sortorder
      *
      * @codeCoverageIgnore
      */
