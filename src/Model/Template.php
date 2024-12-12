@@ -81,90 +81,108 @@ class Template implements ModelInterface
      * @var string|TemplateEngine
      */
     private $templateEngine = TemplateEngine::FREEMARKER_2_3_20;
+
     public function __toString(): string
     {
         return (string) $this->id;
     }
+
     public function setContentId(?string $contentId = null): self
     {
         $this->contentId = $contentId;
 
         return $this;
     }
+
     public function getContentId(): ?string
     {
         return $this->contentId;
     }
+
     public function setData(?string $data = null): self
     {
         $this->data = $data;
 
         return $this;
     }
+
     public function getData(): ?string
     {
         return $this->data;
     }
+
     public function setDecodeBase64(?bool $decodeBase64 = null): self
     {
         $this->decodeBase64 = $decodeBase64;
 
         return $this;
     }
+
     public function getDecodeBase64(): ?bool
     {
         return $this->decodeBase64;
     }
+
     public function setDescription(string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
+
     public function getDescription(): string
     {
         return $this->description;
     }
+
     public function setDisposition(?string $disposition = null): self
     {
         $this->disposition = $disposition;
 
         return $this;
     }
+
     public function getDisposition(): ?string
     {
         return $this->disposition;
     }
+
     public function setDoNotUpdateOnCopy(?bool $doNotUpdateOnCopy = null): self
     {
         $this->doNotUpdateOnCopy = $doNotUpdateOnCopy;
 
         return $this;
     }
+
     public function getDoNotUpdateOnCopy(): ?bool
     {
         return $this->doNotUpdateOnCopy;
     }
+
     public function setFilename(?string $filename = null): self
     {
         $this->filename = $filename;
 
         return $this;
     }
+
     public function getFilename(): ?string
     {
         return $this->filename;
     }
+
     public function setId(?string $id = null): self
     {
         $this->id = $id;
 
         return $this;
     }
+
     public function getId(): ?string
     {
         return $this->id;
     }
+
     /**
      * @param string|TemplateMimeType $mimeType
      */
@@ -174,6 +192,7 @@ class Template implements ModelInterface
 
         return $this;
     }
+
     /**
      * @return string|TemplateMimeType
      */
@@ -181,6 +200,7 @@ class Template implements ModelInterface
     {
         return $this->mimeType;
     }
+
     /**
      * @param string|TemplateEngine $templateEngine
      */
@@ -190,6 +210,7 @@ class Template implements ModelInterface
 
         return $this;
     }
+
     /**
      * @return string|TemplateEngine
      */

@@ -53,6 +53,20 @@ use Symfony\Component\String\UnicodeString;
 
 class Flowmailer extends Endpoints implements FlowmailerInterface
 {
+    /**
+     * @readonly
+     */
+    private OptionsInterface $options;
+    private ?LoggerInterface $logger = null;
+    /**
+     * @readonly
+     */
+    private ?CacheInterface $cache = null;
+    private ?ClientInterface $innerHttpClient = null;
+    /**
+     * @readonly
+     */
+    private ?ClientInterface $innerAuthClient = null;
     public const API_VERSION = 'v1.12';
 
     /**
@@ -93,20 +107,6 @@ class Flowmailer extends Endpoints implements FlowmailerInterface
      * @var array|Plugin[]
      */
     private ?array $plugins = null;
-    /**
-     * @readonly
-     */
-    private OptionsInterface $options;
-    private ?LoggerInterface $logger = null;
-    /**
-     * @readonly
-     */
-    private ?CacheInterface $cache = null;
-    private ?ClientInterface $innerHttpClient = null;
-    /**
-     * @readonly
-     */
-    private ?ClientInterface $innerAuthClient = null;
 
     public function __construct(
         OptionsInterface $options,
@@ -253,7 +253,17 @@ class Flowmailer extends Endpoints implements FlowmailerInterface
     {
         $flowmailer = get_class($this);
 
-        return new $flowmailer((clone $this->getOptions())->setAccountId($id), $this->logger, $this->cache, $this->innerHttpClient, $this->innerAuthClient, $this->requestFactory, $this->uriFactory, $this->streamFactory, $this->serializer);
+        return new $flowmailer(
+            (clone $this->getOptions())->setAccountId($id),
+            $this->logger,
+            $this->cache,
+            $this->innerHttpClient,
+            $this->innerAuthClient,
+            $this->requestFactory,
+            $this->uriFactory,
+            $this->streamFactory,
+            $this->serializer
+        );
     }
 
     public function handleResponse(ResponseInterface $response, $body = null, $method = '')

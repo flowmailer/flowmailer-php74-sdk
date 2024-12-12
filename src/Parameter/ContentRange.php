@@ -14,7 +14,7 @@ class ContentRange
     private string $startReference;
     private string $endReference;
     /**
-     * @var null|int|string
+     * @var int|string|null
      */
     private $total = null;
     /**

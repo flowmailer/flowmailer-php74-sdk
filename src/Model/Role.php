@@ -31,46 +31,55 @@ class Role implements ModelInterface
         $this->id = $id;
         $this->roles = $roles;
     }
+
     public function __toString(): string
     {
         return $this->name;
     }
+
     public function setDescription(string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
+
     public function getDescription(): string
     {
         return $this->description;
     }
+
     public function setId(?string $id = null): self
     {
         $this->id = $id;
 
         return $this;
     }
+
     public function getId(): ?string
     {
         return $this->id;
     }
+
     public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
+
     public function getName(): string
     {
         return $this->name;
     }
+
     public function setRoles(?array $roles = null): self
     {
         $this->roles = $roles;
 
         return $this;
     }
+
     public function getRoles(): ?array
     {
         return $this->roles;
