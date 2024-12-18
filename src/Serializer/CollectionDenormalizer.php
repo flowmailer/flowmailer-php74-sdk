@@ -48,7 +48,7 @@ class CollectionDenormalizer implements DenormalizerInterface, DenormalizerAware
     public function getSupportedTypes(?string $format): array
     {
         return [
-            '*' => true,
+            '*'                    => true,
             ArrayCollection::class => true,
         ];
     }
