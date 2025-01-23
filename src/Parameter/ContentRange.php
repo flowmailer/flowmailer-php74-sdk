@@ -18,7 +18,7 @@ class ContentRange
      */
     private $total = null;
     /**
-     * @param null|int|string $total
+     * @param int|string|null $total
      */
     public function __construct(string $startReference, string $endReference, $total = null)
     {

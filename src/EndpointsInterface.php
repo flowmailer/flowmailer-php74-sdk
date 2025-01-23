@@ -63,12 +63,7 @@ interface EndpointsInterface
      * @param $grantType    must be `client_credentials`
      * @param $scope        Must be absent or `api`
      */
-    public function createRequestForCreateOAuthToken(
-        $clientId,
-        $clientSecret,
-        $grantType,
-        $scope = 'api'
-    ): RequestInterface;
+    public function createRequestForCreateOAuthToken($clientId, $clientSecret, $grantType, $scope = 'api'): RequestInterface;
 
     /**
      * This call is used to request an access token using the client id and secret provided by flowmailer.
@@ -359,10 +354,7 @@ interface EndpointsInterface
      * @param                     $eventFlowId         Flow ID
      * @param EventFlowRuleSimple $eventFlowRuleSimple Flow conditions
      */
-    public function createRequestForUpdateEventFlowRule(
-        $eventFlowId,
-        EventFlowRuleSimple $eventFlowRuleSimple
-    ): RequestInterface;
+    public function createRequestForUpdateEventFlowRule($eventFlowId, EventFlowRuleSimple $eventFlowRuleSimple): RequestInterface;
 
     /**
      * Set conditions for a flow.
@@ -380,20 +372,12 @@ interface EndpointsInterface
      * @param ReferenceRange $range     Limits the returned list
      * @param DateRange      $daterange Date range the filter was added in
      */
-    public function createRequestForGetFilters(
-        ReferenceRange $range,
-        ?DateRange $daterange = null,
-        ?string $sortorder = null
-    ): RequestInterface;
+    public function createRequestForGetFilters(ReferenceRange $range, ?DateRange $daterange = null, ?string $sortorder = null): RequestInterface;
 
     /**
      * List filters per account.
      */
-    public function getFilters(
-        ReferenceRange $range,
-        ?DateRange $daterange = null,
-        ?string $sortorder = null
-    ): FilterCollection;
+    public function getFilters(ReferenceRange $range, ?DateRange $daterange = null, ?string $sortorder = null): FilterCollection;
 
     /**
      * Do the request for getFilters.
@@ -571,26 +555,12 @@ interface EndpointsInterface
      * @param ItemsRange $range      Limits the returned list
      * @param bool       $addheaders Whether to add e-mail headers
      */
-    public function createRequestForGetFlowMessages(
-        $flowId,
-        DateRange $daterange,
-        ItemsRange $range,
-        ?bool $addheaders = false,
-        ?bool $addonlinelink = false,
-        ?bool $addtags = false
-    ): RequestInterface;
+    public function createRequestForGetFlowMessages($flowId, DateRange $daterange, ItemsRange $range, ?bool $addheaders = false, ?bool $addonlinelink = false, ?bool $addtags = false): RequestInterface;
 
     /**
      * List messages per flow.
      */
-    public function getFlowMessages(
-        $flowId,
-        DateRange $daterange,
-        ItemsRange $range,
-        ?bool $addheaders = false,
-        ?bool $addonlinelink = false,
-        ?bool $addtags = false
-    ): MessageCollection;
+    public function getFlowMessages($flowId, DateRange $daterange, ItemsRange $range, ?bool $addheaders = false, ?bool $addonlinelink = false, ?bool $addtags = false): MessageCollection;
 
     /**
      * Do the request for getFlowMessages.
@@ -676,30 +646,14 @@ interface EndpointsInterface
      * @param array          $sourceIds      Filter results on message source ID
      * @param bool           $addmessagetags Message tags will be included with each event if this parameter is true
      */
-    public function createRequestForGetMessageEvents(
-        ReferenceRange $range,
-        ?array $flowIds = null,
-        ?array $sourceIds = null,
-        ?string $sortorder = null,
-        ?bool $addmessagetags = false,
-        ?DateRange $daterange = null,
-        ?DateRange $receivedrange = null
-    ): RequestInterface;
+    public function createRequestForGetMessageEvents(ReferenceRange $range, ?array $flowIds = null, ?array $sourceIds = null, ?string $sortorder = null, ?bool $addmessagetags = false, ?DateRange $daterange = null, ?DateRange $receivedrange = null): RequestInterface;
 
     /**
      * List message events.
      *
      *  Ordered by received, new events first.
      */
-    public function getMessageEvents(
-        ReferenceRange $range,
-        ?array $flowIds = null,
-        ?array $sourceIds = null,
-        ?string $sortorder = null,
-        ?bool $addmessagetags = false,
-        ?DateRange $daterange = null,
-        ?DateRange $receivedrange = null
-    ): MessageEventCollection;
+    public function getMessageEvents(ReferenceRange $range, ?array $flowIds = null, ?array $sourceIds = null, ?string $sortorder = null, ?bool $addmessagetags = false, ?DateRange $daterange = null, ?DateRange $receivedrange = null): MessageEventCollection;
 
     /**
      * Do the request for getMessageEvents.
@@ -766,34 +720,14 @@ interface EndpointsInterface
      * @param bool           $addheaders Whether to add e-mail headers
      * @param DateRange      $daterange  Date range the message was submitted in
      */
-    public function createRequestForGetMessages(
-        ReferenceRange $range,
-        ?array $flowIds = null,
-        ?string $sortfield = null,
-        ?string $sortorder = null,
-        ?bool $addevents = false,
-        ?bool $addheaders = false,
-        ?bool $addonlinelink = false,
-        ?bool $addtags = false,
-        ?DateRange $daterange = null
-    ): RequestInterface;
+    public function createRequestForGetMessages(ReferenceRange $range, ?array $flowIds = null, ?string $sortfield = null, ?string $sortorder = null, ?bool $addevents = false, ?bool $addheaders = false, ?bool $addonlinelink = false, ?bool $addtags = false, ?DateRange $daterange = null): RequestInterface;
 
     /**
      * List messages.
      *
      *  This API call can be used to retrieve all messages and keep your database up to date (without missing messages due to paging issues). To do this sortfield must be set to INSERTED, and sortorder should be set to ASC.
      */
-    public function getMessages(
-        ReferenceRange $range,
-        ?array $flowIds = null,
-        ?string $sortfield = null,
-        ?string $sortorder = null,
-        ?bool $addevents = false,
-        ?bool $addheaders = false,
-        ?bool $addonlinelink = false,
-        ?bool $addtags = false,
-        ?DateRange $daterange = null
-    ): MessageCollection;
+    public function getMessages(ReferenceRange $range, ?array $flowIds = null, ?string $sortfield = null, ?string $sortorder = null, ?bool $addevents = false, ?bool $addheaders = false, ?bool $addonlinelink = false, ?bool $addtags = false, ?DateRange $daterange = null): MessageCollection;
 
     /**
      * Do the request for getMessages.
@@ -867,20 +801,12 @@ interface EndpointsInterface
      *
      * @param $messageId Message ID
      */
-    public function createRequestForGetMessageArchive(
-        $messageId,
-        ?bool $addattachments = false,
-        ?bool $adddata = false
-    ): RequestInterface;
+    public function createRequestForGetMessageArchive($messageId, ?bool $addattachments = false, ?bool $adddata = false): RequestInterface;
 
     /**
      * List the message as archived by one or more flow steps.
      */
-    public function getMessageArchive(
-        $messageId,
-        ?bool $addattachments = false,
-        ?bool $adddata = false
-    ): MessageArchiveCollection;
+    public function getMessageArchive($messageId, ?bool $addattachments = false, ?bool $adddata = false): MessageArchiveCollection;
 
     /**
      * Do the request for getMessageArchive.
@@ -919,20 +845,12 @@ interface EndpointsInterface
     /**
      * Create the RequestInterface for getMessageErrorArchive.
      */
-    public function createRequestForGetMessageErrorArchive(
-        $messageId,
-        ?bool $addattachments = false,
-        ?bool $adddata = false
-    ): RequestInterface;
+    public function createRequestForGetMessageErrorArchive($messageId, ?bool $addattachments = false, ?bool $adddata = false): RequestInterface;
 
     /**
      * Get message error archive.
      */
-    public function getMessageErrorArchive(
-        $messageId,
-        ?bool $addattachments = false,
-        ?bool $adddata = false
-    ): MessageArchive;
+    public function getMessageErrorArchive($messageId, ?bool $addattachments = false, ?bool $adddata = false): MessageArchive;
 
     /**
      * Do the request for getMessageErrorArchive.
@@ -967,11 +885,7 @@ interface EndpointsInterface
      * @param DateRange $daterange Date range the messages were submitted in
      * @param int       $interval  Time difference between samples
      */
-    public function createRequestForGetMessageStats(
-        DateRange $daterange,
-        ?array $flowIds = null,
-        ?int $interval = null
-    ): RequestInterface;
+    public function createRequestForGetMessageStats(DateRange $daterange, ?array $flowIds = null, ?int $interval = null): RequestInterface;
 
     /**
      * Get time based message statistics for whole account.
@@ -1024,28 +938,12 @@ interface EndpointsInterface
      * @param bool           $addheaders    Whether to add e-mail headers
      * @param bool           $addonlinelink Whether to add online link
      */
-    public function createRequestForGetRecipientMessages(
-        $recipient,
-        ReferenceRange $range,
-        ?DateRange $daterange = null,
-        ?string $sortorder = null,
-        ?bool $addheaders = false,
-        ?bool $addonlinelink = false,
-        ?bool $addtags = false
-    ): RequestInterface;
+    public function createRequestForGetRecipientMessages($recipient, ReferenceRange $range, ?DateRange $daterange = null, ?string $sortorder = null, ?bool $addheaders = false, ?bool $addonlinelink = false, ?bool $addtags = false): RequestInterface;
 
     /**
      * List messages per recipient.
      */
-    public function getRecipientMessages(
-        $recipient,
-        ReferenceRange $range,
-        ?DateRange $daterange = null,
-        ?string $sortorder = null,
-        ?bool $addheaders = false,
-        ?bool $addonlinelink = false,
-        ?bool $addtags = false
-    ): MessageCollection;
+    public function getRecipientMessages($recipient, ReferenceRange $range, ?DateRange $daterange = null, ?string $sortorder = null, ?bool $addheaders = false, ?bool $addonlinelink = false, ?bool $addtags = false): MessageCollection;
 
     /**
      * Do the request for getRecipientMessages.
@@ -1086,28 +984,12 @@ interface EndpointsInterface
      * @param bool           $addheaders    Whether to add e-mail headers
      * @param bool           $addonlinelink Whether to add online link
      */
-    public function createRequestForGetSenderMessages(
-        $sender,
-        ReferenceRange $range,
-        ?DateRange $daterange = null,
-        ?string $sortorder = null,
-        ?bool $addheaders = false,
-        ?bool $addonlinelink = false,
-        ?bool $addtags = false
-    ): RequestInterface;
+    public function createRequestForGetSenderMessages($sender, ReferenceRange $range, ?DateRange $daterange = null, ?string $sortorder = null, ?bool $addheaders = false, ?bool $addonlinelink = false, ?bool $addtags = false): RequestInterface;
 
     /**
      * List messages per sender.
      */
-    public function getSenderMessages(
-        $sender,
-        ReferenceRange $range,
-        ?DateRange $daterange = null,
-        ?string $sortorder = null,
-        ?bool $addheaders = false,
-        ?bool $addonlinelink = false,
-        ?bool $addtags = false
-    ): MessageCollection;
+    public function getSenderMessages($sender, ReferenceRange $range, ?DateRange $daterange = null, ?string $sortorder = null, ?bool $addheaders = false, ?bool $addonlinelink = false, ?bool $addtags = false): MessageCollection;
 
     /**
      * Do the request for getSenderMessages.
@@ -1357,26 +1239,12 @@ interface EndpointsInterface
      * @param ItemsRange $range      Limits the returned list
      * @param bool       $addheaders Whether to add e-mail headers
      */
-    public function createRequestForGetSourceMessages(
-        $sourceId,
-        DateRange $daterange,
-        ItemsRange $range,
-        ?bool $addheaders = false,
-        ?bool $addonlinelink = false,
-        ?bool $addtags = false
-    ): RequestInterface;
+    public function createRequestForGetSourceMessages($sourceId, DateRange $daterange, ItemsRange $range, ?bool $addheaders = false, ?bool $addonlinelink = false, ?bool $addtags = false): RequestInterface;
 
     /**
      * List messages per source.
      */
-    public function getSourceMessages(
-        $sourceId,
-        DateRange $daterange,
-        ItemsRange $range,
-        ?bool $addheaders = false,
-        ?bool $addonlinelink = false,
-        ?bool $addtags = false
-    ): MessageCollection;
+    public function getSourceMessages($sourceId, DateRange $daterange, ItemsRange $range, ?bool $addheaders = false, ?bool $addonlinelink = false, ?bool $addtags = false): MessageCollection;
 
     /**
      * Do the request for getSourceMessages.
@@ -1395,11 +1263,7 @@ interface EndpointsInterface
      * @param DateRange $daterange Date range the messages were submitted in
      * @param int       $interval  Time difference between samples
      */
-    public function createRequestForGetSourceStats(
-        $sourceId,
-        DateRange $daterange,
-        ?int $interval = null
-    ): RequestInterface;
+    public function createRequestForGetSourceStats($sourceId, DateRange $daterange, ?int $interval = null): RequestInterface;
 
     /**
      * Get time based message statistics for a message source.
@@ -1534,28 +1398,12 @@ interface EndpointsInterface
      * @param bool           $addheaders    Whether to add e-mail headers
      * @param bool           $addonlinelink Whether to add online link
      */
-    public function createRequestForGetTagMessages(
-        $tag,
-        ReferenceRange $range,
-        ?DateRange $daterange = null,
-        ?string $sortorder = null,
-        ?bool $addheaders = false,
-        ?bool $addonlinelink = false,
-        ?bool $addtags = false
-    ): RequestInterface;
+    public function createRequestForGetTagMessages($tag, ReferenceRange $range, ?DateRange $daterange = null, ?string $sortorder = null, ?bool $addheaders = false, ?bool $addonlinelink = false, ?bool $addtags = false): RequestInterface;
 
     /**
      * List messages per tag.
      */
-    public function getTagMessages(
-        $tag,
-        ReferenceRange $range,
-        ?DateRange $daterange = null,
-        ?string $sortorder = null,
-        ?bool $addheaders = false,
-        ?bool $addonlinelink = false,
-        ?bool $addtags = false
-    ): MessageCollection;
+    public function getTagMessages($tag, ReferenceRange $range, ?DateRange $daterange = null, ?string $sortorder = null, ?bool $addheaders = false, ?bool $addonlinelink = false, ?bool $addtags = false): MessageCollection;
 
     /**
      * Do the request for getTagMessages.
@@ -1670,30 +1518,12 @@ interface EndpointsInterface
      * @param bool           $addevents     Whether to add message events
      * @param bool           $addheaders    Whether to add e-mail headers
      */
-    public function createRequestForGetUndeliveredMessages(
-        ReferenceRange $range,
-        ?DateRange $daterange = null,
-        ?DateRange $receivedrange = null,
-        ?string $sortorder = null,
-        ?bool $addevents = false,
-        ?bool $addheaders = false,
-        ?bool $addonlinelink = false,
-        ?bool $addtags = false
-    ): RequestInterface;
+    public function createRequestForGetUndeliveredMessages(ReferenceRange $range, ?DateRange $daterange = null, ?DateRange $receivedrange = null, ?string $sortorder = null, ?bool $addevents = false, ?bool $addheaders = false, ?bool $addonlinelink = false, ?bool $addtags = false): RequestInterface;
 
     /**
      * List undeliverable messages.
      */
-    public function getUndeliveredMessages(
-        ReferenceRange $range,
-        ?DateRange $daterange = null,
-        ?DateRange $receivedrange = null,
-        ?string $sortorder = null,
-        ?bool $addevents = false,
-        ?bool $addheaders = false,
-        ?bool $addonlinelink = false,
-        ?bool $addtags = false
-    ): BouncedMessageCollection;
+    public function getUndeliveredMessages(ReferenceRange $range, ?DateRange $daterange = null, ?DateRange $receivedrange = null, ?string $sortorder = null, ?bool $addevents = false, ?bool $addheaders = false, ?bool $addonlinelink = false, ?bool $addtags = false): BouncedMessageCollection;
 
     /**
      * Do the request for getUndeliveredMessages.

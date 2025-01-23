@@ -23,6 +23,12 @@ use Symfony\Component\Cache\Psr16Cache;
 
 class AuthTokenPlugin implements Plugin
 {
+    private int $retriesLeft = 3;
+
+    /**
+     * @readonly
+     */
+    private CacheInterface $cache;
     /**
      * @readonly
      */
@@ -35,19 +41,8 @@ class AuthTokenPlugin implements Plugin
      * @readonly
      */
     private int $maxRetries = 3;
-    private int $retriesLeft = 3;
-
-    /**
-     * @readonly
-     */
-    private CacheInterface $cache;
-
-    public function __construct(
-        FlowmailerInterface $client,
-        OptionsInterface $options,
-        ?CacheInterface $cache = null,
-        int $maxRetries = 3
-    ) {
+    public function __construct(FlowmailerInterface $client, OptionsInterface $options, ?CacheInterface $cache = null, int $maxRetries = 3)
+    {
         $this->client = $client;
         $this->options = $options;
         $this->maxRetries = $maxRetries;

@@ -54,20 +54,6 @@ use Symfony\Component\String\UnicodeString;
 
 class Flowmailer extends Endpoints implements FlowmailerInterface
 {
-    /**
-     * @readonly
-     */
-    private OptionsInterface $options;
-    private ?LoggerInterface $logger = null;
-    /**
-     * @readonly
-     */
-    private ?CacheInterface $cache = null;
-    private ?ClientInterface $innerHttpClient = null;
-    /**
-     * @readonly
-     */
-    private ?ClientInterface $innerAuthClient = null;
     public const API_VERSION = 'v1.12';
 
     /**
@@ -108,33 +94,34 @@ class Flowmailer extends Endpoints implements FlowmailerInterface
      * @var array|Plugin[]
      */
     private ?array $plugins = null;
-
-    public function __construct(
-        OptionsInterface $options,
-        ?LoggerInterface $logger = null,
-        ?CacheInterface $cache = null,
-        ?ClientInterface $innerHttpClient = null,
-        ?ClientInterface $innerAuthClient = null,
-        ?RequestFactoryInterface $requestFactory = null,
-        ?UriFactoryInterface $uriFactory = null,
-        ?StreamFactoryInterface $streamFactory = null,
-        ?SerializerInterface $serializer = null
-    ) {
+    /**
+     * @readonly
+     */
+    private OptionsInterface $options;
+    private ?LoggerInterface $logger = null;
+    /**
+     * @readonly
+     */
+    private ?CacheInterface $cache = null;
+    private ?ClientInterface $innerHttpClient = null;
+    /**
+     * @readonly
+     */
+    private ?ClientInterface $innerAuthClient = null;
+    public function __construct(OptionsInterface $options, ?LoggerInterface $logger = null, ?CacheInterface $cache = null, ?ClientInterface $innerHttpClient = null, ?ClientInterface $innerAuthClient = null, ?RequestFactoryInterface $requestFactory = null, ?UriFactoryInterface $uriFactory = null, ?StreamFactoryInterface $streamFactory = null, ?SerializerInterface $serializer = null)
+    {
         $this->options = $options;
         $this->logger = $logger;
         $this->cache = $cache;
         $this->innerHttpClient = $innerHttpClient;
         $this->innerAuthClient = $innerAuthClient;
         $this->logger ??= new NullLogger();
-
         $this->accountId    = $options->getAccountId();
         $this->clientId     = $options->getClientId();
         $this->clientSecret = $options->getClientSecret();
-
         $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
         $this->uriFactory     = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
         $this->streamFactory  = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
-
         parent::__construct($serializer ?? SerializerFactory::create());
     }
 
@@ -254,17 +241,7 @@ class Flowmailer extends Endpoints implements FlowmailerInterface
     {
         $flowmailer = get_class($this);
 
-        return new $flowmailer(
-            (clone $this->getOptions())->setAccountId($id),
-            $this->logger,
-            $this->cache,
-            $this->innerHttpClient,
-            $this->innerAuthClient,
-            $this->requestFactory,
-            $this->uriFactory,
-            $this->streamFactory,
-            $this->serializer
-        );
+        return new $flowmailer((clone $this->getOptions())->setAccountId($id), $this->logger, $this->cache, $this->innerHttpClient, $this->innerAuthClient, $this->requestFactory, $this->uriFactory, $this->streamFactory, $this->serializer);
     }
 
     public function handleResponse(ResponseInterface $response, $body = null, $method = '')

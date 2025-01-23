@@ -40,7 +40,6 @@ class SubmitMessageQueue
         $this->client = $client;
         $this->topic = $topic;
     }
-
     public static function init(FlowmailerInterface $api, $queueClientConfig, $topic = 'flowmailer_messages', ?LoggerInterface $logger = null)
     {
         if (InstalledVersions::isInstalled('enqueue/simple-client') === false) {

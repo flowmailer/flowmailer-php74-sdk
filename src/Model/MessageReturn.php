@@ -25,16 +25,20 @@ class MessageReturn implements ModelInterface
 
     private ?string $deviceCategory = null;
 
-    /** Event data */
-    private $extraData;
+    /**
+     * Event data.
+     */
+    private ?\stdClass $extraData = null;
 
     /**
      * Message event ID.
      */
     private ?string $id = null;
 
-    /** Database insert date */
-    private $inserted;
+    /**
+     * Database insert date.
+     */
+    private ?\DateTimeInterface $inserted = null;
 
     private ?string $linkName = null;
 
@@ -50,7 +54,7 @@ class MessageReturn implements ModelInterface
      *
      *  Only filled for the `GET /{account_id}/message_events` api call when the parameter `addmessagetags` is `true`
      *
-     * @var string[]|null
+     * @var array<int,string>|null
      */
     private ?array $messageTags = null;
 
@@ -76,13 +80,18 @@ class MessageReturn implements ModelInterface
      * Bounce snippet or SMTP conversation snippet.
      */
     private ?string $snippet = null;
-    private $sourceMta;
 
-    /** Bounce sub type */
-    private $subType;
+    private ?string $sourceMta = null;
 
-    /** Custom event type */
-    private $tag;
+    /**
+     * Bounce sub type.
+     */
+    private ?string $subType = null;
+
+    /**
+     * Custom event type.
+     */
+    private ?string $tag = null;
 
     /**
      * Event type, must be `CUSTOM`.
@@ -124,14 +133,14 @@ class MessageReturn implements ModelInterface
         return $this->deviceCategory;
     }
 
-    public function setExtraData($extraData = null): self
+    public function setExtraData(?\stdClass $extraData = null): self
     {
         $this->extraData = $extraData;
 
         return $this;
     }
 
-    public function getExtraData()
+    public function getExtraData(): ?\stdClass
     {
         return $this->extraData;
     }
@@ -148,14 +157,14 @@ class MessageReturn implements ModelInterface
         return $this->id;
     }
 
-    public function setInserted($inserted = null): self
+    public function setInserted(?\DateTimeInterface $inserted = null): self
     {
         $this->inserted = $inserted;
 
         return $this;
     }
 
-    public function getInserted()
+    public function getInserted(): ?\DateTimeInterface
     {
         return $this->inserted;
     }
@@ -292,38 +301,38 @@ class MessageReturn implements ModelInterface
         return $this->snippet;
     }
 
-    public function setSourceMta($sourceMta = null): self
+    public function setSourceMta(?string $sourceMta = null): self
     {
         $this->sourceMta = $sourceMta;
 
         return $this;
     }
 
-    public function getSourceMta()
+    public function getSourceMta(): ?string
     {
         return $this->sourceMta;
     }
 
-    public function setSubType($subType = null): self
+    public function setSubType(?string $subType = null): self
     {
         $this->subType = $subType;
 
         return $this;
     }
 
-    public function getSubType()
+    public function getSubType(): ?string
     {
         return $this->subType;
     }
 
-    public function setTag($tag = null): self
+    public function setTag(?string $tag = null): self
     {
         $this->tag = $tag;
 
         return $this;
     }
 
-    public function getTag()
+    public function getTag(): ?string
     {
         return $this->tag;
     }
